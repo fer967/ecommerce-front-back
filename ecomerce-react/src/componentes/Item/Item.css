@@ -1,5 +1,5 @@
 .cardProducto {
-    background-color: #F2F4F5;
+    border: 2px solid black;
     border-radius: 10px;
     width: 20rem;
     padding: 1rem;
@@ -9,12 +9,9 @@
     align-items: center;
 }
 
-.cardProducto img {
-    width: 150px;
-}
 
 .btn {
-    background-color:#EB302D;
+    background-color:#eb302d66;
     color: #FAFAFA;
     border-radius: 10px;
     border: none;

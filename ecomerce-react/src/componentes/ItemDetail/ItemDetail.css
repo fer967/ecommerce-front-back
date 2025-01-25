@@ -1,5 +1,17 @@
+.contenedorItem{
+    background-color: rgba(255, 0, 0, 0.368);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px;
+    border-radius: 10px;
+    border: black 3px solid;
+}
+
 .cardProducto {
-    background-color: #F2F4F5;
+    background-color: rgba(255, 0, 0, 0.368);
     border-radius: 10px;
     width: 20rem;
     padding: 1rem;
@@ -10,7 +22,8 @@
 }
 
 .cardProducto img {
-    width: 150px;
+    width: 250px;
+    border-radius: 5px;
 }
 
 .btn {
