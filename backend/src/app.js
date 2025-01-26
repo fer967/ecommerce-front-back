@@ -8,7 +8,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const connect = mongoose.connect(process.env.MONGO_URL)
+const connect = mongoose.connect("mongodb+srv://gabriel70080:coder@cluster0.yt1in.mongodb.net/react?retryWrites=true&w=majority&appName=Cluster0")
 .then(() => console.log("Conectado a la DB") );
 
 app.use(express.json());
