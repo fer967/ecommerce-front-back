@@ -1,3 +1,79 @@
+/* Estilos generales para el contenedor del detalle del item */
+.contenedorItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.contenedorItem img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.contenedorItem h2 {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.contenedorItem p {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.contenedorItem .precio {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.contenedorItem .contador {
+    margin: 20px 0;
+}
+
+/* Estilos para pantallas medianas */
+@media (max-width: 768px) {
+    .contenedorItem {
+        padding: 15px;
+    }
+
+    .contenedorItem h2 {
+        font-size: 20px;
+    }
+
+    .contenedorItem p {
+        font-size: 16px;
+    }
+
+    .contenedorItem .precio {
+        font-size: 18px;
+    }
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 480px) {
+    .contenedorItem {
+        padding: 10px;
+    }
+
+    .contenedorItem h2 {
+        font-size: 18px;
+    }
+
+    .contenedorItem p {
+        font-size: 14px;
+    }
+
+    .contenedorItem .precio {
+        font-size: 16px;
+    }
+}
+
+
+
+/*  --- actual ---
 .contenedorItem{
     background-color: rgba(255, 0, 0, 0.368);
     display: flex;
@@ -35,3 +111,4 @@
     text-decoration: none;
     cursor: pointer;
 }
+    */

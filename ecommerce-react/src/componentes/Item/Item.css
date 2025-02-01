@@ -1,3 +1,89 @@
+
+/* Estilos generales para la tarjeta del producto */
+.cardProducto {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.cardProducto:hover {
+    transform: scale(1.05);
+}
+
+.cardProducto img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.cardProducto h3 {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.cardProducto p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.cardProducto .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.cardProducto .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para pantallas medianas */
+@media (max-width: 768px) {
+    .cardProducto {
+        padding: 10px;
+    }
+
+    .cardProducto h3 {
+        font-size: 18px;
+    }
+
+    .cardProducto p {
+        font-size: 14px;
+    }
+
+    .cardProducto .btn {
+        padding: 8px 16px;
+    }
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 480px) {
+    .cardProducto {
+        padding: 8px;
+    }
+
+    .cardProducto h3 {
+        font-size: 16px;
+    }
+
+    .cardProducto p {
+        font-size: 12px;
+    }
+
+    .cardProducto .btn {
+        padding: 6px 12px;
+    }
+}
+
+/* --- actual ---
 .cardProducto {
     border: 2px solid black;
     border-radius: 10px;
@@ -19,3 +105,5 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+*/

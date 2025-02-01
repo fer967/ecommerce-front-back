@@ -1,4 +1,62 @@
-/*
+/* Estilos generales para la barra de navegación */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+}
+
+.title {
+    font-size: 24px;
+}
+
+.categoria {
+    display: flex;
+    gap: 15px;
+}
+
+.Option {
+    color: white;
+    text-decoration: none;
+}
+
+.ActiveOption {
+    color: yellow;
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .categoria {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+}
+
+/* Estilos para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .title {
+        font-size: 18px;
+    }
+
+    .Option, .ActiveOption {
+        font-size: 14px;
+    }
+}
+
+
+
+/*  --- actual ---
 header {
     width: 100%;
     margin: 0;
@@ -23,6 +81,7 @@ li a {
 */
 
 
+/*
 .navbar{
     background-color: cornsilk;
     display: flex;
@@ -57,3 +116,4 @@ li a {
 .ActiveOption{
     text-decoration: none;
 }
+    */
