@@ -1,4 +1,8 @@
+/*
 header {
+    width: 100%;
+    margin: 0;
+    padding: 20px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -15,4 +19,41 @@ li a {
     text-decoration: none;
     text-transform: uppercase;
     color: black;
+}
+*/
+
+
+.navbar{
+    background-color: cornsilk;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 5rem;
+    padding: 10px;
+}
+
+.title{
+    text-decoration: none;
+}
+
+.categoria{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    padding: 5px;
+}
+
+.Option{
+    text-decoration: none;
+    background-color: rgba(255, 0, 0, 0.149);
+    border: 1px solid rgba(255, 0, 0, 0.657);
+    border-radius: 6px;
+    padding: 2px;
+}
+
+.ActiveOption{
+    text-decoration: none;
 }

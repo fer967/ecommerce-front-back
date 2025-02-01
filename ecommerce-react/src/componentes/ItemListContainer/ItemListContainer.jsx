@@ -21,12 +21,11 @@ const ItemListContainer = () => {
             });
     }, [idCategoria]); // Volver a ejecutar el efecto cuando cambia idCategoria
     return (
-        <div>
+        <div className="contenedorProductos">
             <h2>Mis productos</h2>
             <div className="container">
                 <ItemList productos={productos} />
             </div>
-
         </div>
     )
 }
