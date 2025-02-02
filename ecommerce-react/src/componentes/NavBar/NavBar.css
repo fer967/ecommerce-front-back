@@ -26,6 +26,8 @@
     color: yellow;
 }
 
+
+
 /* Estilos para pantallas pequeñas */
 @media (max-width: 768px) {
     .navbar {
@@ -43,6 +45,7 @@
     }
 }
 
+
 /* Estilos para pantallas muy pequeñas */
 @media (max-width: 480px) {
     .title {
@@ -56,7 +59,8 @@
 
 
 
-/*  --- actual ---
+
+/*  --- actual --- 
 header {
     width: 100%;
     margin: 0;
@@ -78,7 +82,8 @@ li a {
     text-transform: uppercase;
     color: black;
 }
-*/
+    */
+
 
 
 /*
