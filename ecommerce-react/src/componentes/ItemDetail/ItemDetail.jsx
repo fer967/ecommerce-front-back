@@ -21,7 +21,7 @@ const ItemDetail = ({ _id, nombre, stock, precio, image }) => {
     }
     
     const protocol = window.location.protocol;
-    const imageUrl = `${protocol}//localhost:3000${image}`;
+    const imageUrl = `${protocol}//localhost:3000/${image}`;
     
     //const imageUrl = `https://localhost:3000/${image}`; 
     return (
