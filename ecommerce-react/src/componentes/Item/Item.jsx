@@ -2,7 +2,9 @@ import './Item.css';
 import { Link } from 'react-router-dom';
 
 const Item = ({ _id, nombre, stock, precio, image }) => {
-    const imageUrl = `https://localhost:3000/${image}`; // Asegúrate de que la URL es correcta
+    const protocol = window.location.protocol;
+    const imageUrl = `${protocol}//localhost:3000/${image}`;
+    //const imageUrl = `https://localhost:3000/${image}`; // Asegúrate de que la URL es correcta
 
     return (
         <div className='cardProducto'>
