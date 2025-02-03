@@ -1,5 +1,56 @@
-
 /* Estilos generales para el contenedor de productos */
+.contenedorProductos {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+
+/* Estilos para los elementos individuales de la lista de productos */
+.item {
+    background-color: white;
+    border: 1px solid red;
+    border-radius: 4px;
+    padding: 10px;
+    flex: 1 1 calc(33.333% - 20px); /* Tres columnas con espacio entre ellas */
+    box-sizing: border-box;
+}
+
+/* Estilos para pantallas medianas */
+@media (max-width: 1024px) {
+    .item {
+        flex: 1 1 calc(50% - 20px); /* Dos columnas con espacio entre ellas */
+    }
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .item {
+        flex: 1 1 calc(50% - 20px); /* Dos columnas con espacio entre ellas */
+    }
+}
+
+/* Estilos para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .item {
+        flex: 1 1 100%; /* Una columna */
+    }
+}
+
+
+
+/* actual
+/* Estilos generales para el contenedor de productos 
 .contenedorProductos {
     display: flex;
     flex-direction: column;
@@ -18,20 +69,20 @@ h2 {
     gap: 20px;
 }
 
-/* Estilos para los elementos individuales de la lista de productos */
+/* Estilos para los elementos individuales de la lista de productos 
 .item {
     background-color: white;
     border: 1px solid red;
     border-radius: 4px;
     padding: 10px;
-    flex: 1 1 calc(33.333% - 20px); /* Tres columnas con espacio entre ellas */
+    flex: 1 1 calc(33.333% - 20px); /* Tres columnas con espacio entre ellas 
     box-sizing: border-box;
 }
 
-/* Estilos para pantallas medianas */
+/* Estilos para pantallas medianas 
 @media (max-width: 768px) {
     .item {
-        flex: 1 1 calc(50% - 20px); /* Dos columnas con espacio entre ellas */
+        flex: 1 1 calc(50% - 20px); /* Dos columnas con espacio entre ellas 
     }
 
     h2 {
@@ -39,10 +90,10 @@ h2 {
     }
 }
 
-/* Estilos para pantallas pequeñas */
+/* Estilos para pantallas pequeñas 
 @media (max-width: 480px) {
     .item {
-        flex: 1 1 100%; /* Una columna */
+        flex: 1 1 100%; /* Una columna 
     }
 
     h2 {
@@ -52,7 +103,7 @@ h2 {
 
 
 
-/*  --- actual --- 
+/*  --- anterior --- 
 .contenedorProductos {
     width: 100%;
     display: flex;
