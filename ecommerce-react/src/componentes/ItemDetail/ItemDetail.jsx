@@ -20,7 +20,7 @@ const ItemDetail = ({ _id, nombre, stock, precio, image }) => {
         agregarAlCarrito(item, cantidad);
     }
 
-    const imageUrl = `http://localhost:3000${image}`; 
+    const imageUrl = `http://localhost:3000/${image}`; 
     return (
         <div className='contenedorItem'>
             <h2>{nombre} </h2>
