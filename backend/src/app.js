@@ -42,6 +42,7 @@ app.use("/api/ordenes", ordenesRouter);
 app.post('/upload', upload.single('image'), (req, res) => {
     const { nombre, descripcion, precio, stock, categoria } = req.body;
     const image = path.posix.join('/', req.file.path.replace(/\\/g, '/')); 
+    console.log(image);
     //const image= req.file.path;
     const newProduct = new Product({
         nombre,
