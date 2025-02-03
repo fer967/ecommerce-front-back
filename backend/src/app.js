@@ -58,7 +58,7 @@ app.post('/upload', upload.single('image'), (req, res) => {
 
 
 app.listen(PUERTO, () => {
-    console.log(`server in http://localhost:${PUERTO}`)});
+    console.log(`server in https://localhost:${PUERTO}`)});
 
 
 
