@@ -20,14 +20,14 @@ const ItemDetail = ({ _id, nombre, stock, precio, image }) => {
         agregarAlCarrito(item, cantidad);
     }
     
-    const protocol = window.location.protocol;
-    const imageUrl = `${protocol}//localhost:3000/${image}`;
+    /*const protocol = window.location.protocol;
+    const imageUrl = `${protocol}//localhost:3000/${image}`; */
     
     //const imageUrl = `https://localhost:3000/${image}`; 
     return (
         <div className='contenedorItem'>
             <h2>{nombre} </h2>
-            <img src={imageUrl} alt={nombre} />
+            <img src={image} alt={nombre} /> {/* Usa directamente la URL de Cloudinary */}
             <p>Precio:{precio} </p>
             <p>ID:{_id} </p>
             <p>STOCK:{stock} </p>
