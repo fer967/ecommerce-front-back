@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express(); 
-const PUERTO = process.env.PUERTO || 8080;
+const PUERTO = process.env.PUERTO || 3000;
 const productosRouter = require("./routes/productos.router.js");
 const ordenesRouter = require("./routes/ordenes.router.js");
 const Product = require("./models/productos.model.js");
@@ -10,7 +10,27 @@ const cors = require('cors');
 const multer = require('multer');
 const dotenv = require('dotenv');
 dotenv.config();
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
+// Configurar Cloudinary
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+// Configurar almacenamiento de Cloudinary para multer
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: 'uploads', // Carpeta en Cloudinary donde se guardarán las imágenes
+        format: async (req, file) => 'jpg', // Formato de la imagen
+        public_id: (req, file) => Date.now() + '-' + file.originalname // Nombre del archivo
+    }
+});
+
+/*
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'uploads/'); 
@@ -18,12 +38,13 @@ const storage = multer.diskStorage({
     filename: function (req, file, cb) {
         cb(null, Date.now() + '-' + file.originalname);
     }
-});
+});  */
 
-const upload = multer({ storage: storage });
+const upload = multer({ storage: storage }); 
 
 const connect = mongoose.connect(process.env.MONGO_URL)
-.then(() => console.log("Conectado a la DB") );
+.then(() => console.log("Conectado a la DB") )
+.catch(err => console.error('Error al conectar a la DB:', err));
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true})); 
@@ -34,16 +55,14 @@ app.use(cors({
 }));
 
 // Servir archivos estáticos desde la carpeta 'uploads'
-app.use('/uploads', express.static('uploads'));
+/*app.use('/uploads', express.static('uploads')); */
 
 app.use("/api/productos", productosRouter);
 app.use("/api/ordenes", ordenesRouter);
 
 app.post('/upload', upload.single('image'), (req, res) => {
     const { nombre, descripcion, precio, stock, categoria } = req.body;
-    const image = path.posix.join('/', req.file.path.replace(/\\/g, '/')); 
-    console.log(image);
-    //const image= req.file.path;
+    const image = req.file.path;  // URL de la imagen en Cloudinary
     const newProduct = new Product({
         nombre,
         descripcion,
