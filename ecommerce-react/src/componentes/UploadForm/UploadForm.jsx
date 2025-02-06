@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './UploadForm.css';
 
 const UploadForm = () => {
     const [nombre, setNombre] = useState('');
@@ -32,7 +33,7 @@ const UploadForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='upload-form'>
             <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} placeholder="Nombre" required />
             <input type="text" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} placeholder="Descripción" required />
             <input type="number" value={precio} onChange={(e) => setPrecio(e.target.value)} placeholder="Precio" required />
