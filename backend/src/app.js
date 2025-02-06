@@ -62,14 +62,19 @@ app.use("/api/ordenes", ordenesRouter);
 
 app.post('/upload', upload.single('image'), (req, res) => {
     const { nombre, descripcion, precio, stock, categoria } = req.body;
+    if (!req.file) {
+        return res.status(400).json({ error: 'No se ha subido ninguna imagen' });
+    }
     const image = req.file.path;  // URL de la imagen en Cloudinary
+    //const result = await cloudinary.uploader.upload(req.file.path);     
     const newProduct = new Product({
         nombre,
         descripcion,
         precio,
         stock,
         categoria,
-        image
+        image: req.file.path
+        //image: result.secure_url
     });
     newProduct.save()
         .then(() => res.status(201).json({ message: 'Producto creado con éxito' }))
