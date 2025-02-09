@@ -43,5 +43,18 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.get('/:id', async (req, res) => {
+    try {
+        const orden = await OrdenModel.findById(req.params.id);
+        if (orden) {
+            res.json(orden);
+        } else {
+            res.status(404).json({ message: "Orden no encontrada" });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 module.exports = router;
 
