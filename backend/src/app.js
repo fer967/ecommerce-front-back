@@ -30,16 +30,6 @@ const storage = new CloudinaryStorage({
     }
 });
 
-/*
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/'); 
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + '-' + file.originalname);
-    }
-});  */
-
 const upload = multer({ storage: storage }); 
 
 const connect = mongoose.connect(process.env.MONGO_URL)
@@ -53,9 +43,6 @@ app.use(cors({
     origin: "https://front-wp3g.onrender.com", 
     credentials: true
 }));
-
-// Servir archivos estáticos desde la carpeta 'uploads'
-/*app.use('/uploads', express.static('uploads')); */
 
 app.use("/api/productos", productosRouter);
 app.use("/api/ordenes", ordenesRouter);
