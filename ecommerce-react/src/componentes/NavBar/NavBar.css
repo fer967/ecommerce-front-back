@@ -1,11 +1,13 @@
 /* Estilos generales para la barra de navegación */
 .navbar {
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content:space-around;
     align-items: center;
     padding: 10px 20px;
     background-color: #333;
     color: white;
+    overflow-x: hidden;
 }
 
 .title {

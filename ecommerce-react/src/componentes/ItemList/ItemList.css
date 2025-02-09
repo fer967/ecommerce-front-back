@@ -1,5 +1,6 @@
 /* Estilos generales para el contenedor de productos */
 .contenedorProductos {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;

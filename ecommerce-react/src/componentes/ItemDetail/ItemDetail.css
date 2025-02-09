@@ -1,14 +1,26 @@
 /* Estilos generales para el contenedor del detalle del item */
 .contenedorItem {
+    width: 100%;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: rgba(128, 128, 128, 0.596);
+}
+
+.comprar {
+    background-color: #EB302D;
+    color: #FAFAFA;
+    border-radius: 10px;
+    border: none;
+    padding: 10px 20px;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .contenedorItem img {
-    max-width: 100%;
+    max-width: 80%;
     height: auto;
     border-radius: 8px;
 }

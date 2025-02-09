@@ -1,7 +1,8 @@
 .itemDetailContainer{
+    background-color: rgba(128, 128, 128, 0.986);
     display: flex;
     flex-direction: column;
-    width: 25%;
+    width: 100%;
     margin: 0 auto;
     padding: 16px;
 }

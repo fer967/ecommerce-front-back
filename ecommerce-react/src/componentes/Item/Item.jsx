@@ -4,10 +4,9 @@ import { Link } from 'react-router-dom';
 const Item = ({ _id, nombre, stock, precio, image }) => {
     return (
         <div className='cardProducto'>
-            <img src={image} alt={nombre} /> {/* Usa directamente la URL de Cloudinary */}
             <h3>{nombre}</h3>
+            <img src={image} alt={nombre} /> {/* Usa directamente la URL de Cloudinary */}
             <p>Precio: {precio}</p>
-            <p>ID: {_id}</p>
             <p>STOCK: {stock}</p>
             <Link className='btn' to={`/item/${_id}`}>Ver Detalles</Link>
         </div>

@@ -6,6 +6,7 @@ import { CarritoProvider } from "./context/CarritoContext";
 import Cart from "./componentes/Cart/Cart";
 import Checkout from "./componentes/Checkout/Checkout";
 import UploadForm from "./componentes/UploadForm/UploadForm";
+import OrderDetail from './componentes/OrderDetail/OrderDetail';
 
 const App = () => {
   return (
@@ -19,8 +20,9 @@ const App = () => {
             <Route exact path="/item/:idItem" element={<ItemDetailContainer />} />
             <Route exact path="/cart" element={<Cart />} />
             <Route exact path="/checkout" element={<Checkout />} />
-            <Route exact path="*" element={<h2>Sitio en construcción</h2>} />
             <Route exact path="/upload" element={<UploadForm />} />
+            <Route exact path="/order/:id" element={<OrderDetail />} />
+            <Route exact path="*" element={<h2>Sitio en construcción</h2>} />
           </Routes>
         </CarritoProvider>
       </BrowserRouter>
