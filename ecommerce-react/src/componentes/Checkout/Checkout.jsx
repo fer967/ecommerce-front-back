@@ -1,7 +1,8 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CarritoContext } from "../../context/CarritoContext";
-import config from "../../services/config.js";
+//import config from "../../services/config.js";
+import axios from 'axios';
 import './Checkout.css';
 
 const Checkout = () => {
