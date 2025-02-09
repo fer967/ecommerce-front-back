@@ -14,7 +14,8 @@ const Checkout = () => {
     const [ordenId, setOrdenId] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate(); // Usar useHistory para manejar la navegación
-    const API_URL = import.meta.env.VITE_API_URL  || 'http://localhost:3000';
+    const API_URL = import.meta.env.VITE_API_URL;
+    //const API_URL = 'http://localhost:3000';
 
     const manejadorSubmit = (event) => {
         event.preventDefault();
@@ -41,7 +42,6 @@ const Checkout = () => {
             email
         };
         // Realizamos la solicitud POST al backend
-        //config.post('/ordenes', orden)  // Cambia a '/api/ordenes'
         axios.post(`${API_URL}/api/ordenes`, orden)
             .then(response => {
                 setOrdenId(response.data._id); // Suponiendo que el ID se devuelve en la respuesta del servidor
