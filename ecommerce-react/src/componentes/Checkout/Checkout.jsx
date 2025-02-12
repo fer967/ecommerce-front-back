@@ -85,7 +85,7 @@ const Checkout = () => {
                     <input className ="input" type="email" onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor=""> Email Confirmación </label>
+                    <label htmlFor=""> Confirmar correo </label>
                     <input className ="input" type="email" onChange={(e) => setEmailConfirmacion(e.target.value)} />
                 </div>
                 {

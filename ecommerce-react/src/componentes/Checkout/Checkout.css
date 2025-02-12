@@ -71,3 +71,9 @@ h2 {
     border-radius: 5px;
 
 }
+
+@media (max-width: 480px){
+    .checkout{
+        width: 100%;
+    }
+}

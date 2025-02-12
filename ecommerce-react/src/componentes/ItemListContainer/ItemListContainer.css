@@ -78,7 +78,7 @@ h2 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 100vw;
     margin: 0 auto;
     padding: 20px;
     background-color: gray;
@@ -115,12 +115,14 @@ h2 {
     }
 }
 
+
+
 /* Estilos para pantallas pequeñas */
 @media (max-width: 768px) {
     .item {
         flex: 1 1 calc(50% - 20px); /* Dos columnas con espacio entre ellas */
     }
-}
+} 
 
 /* Estilos para pantallas muy pequeñas */
 @media (max-width: 480px) {
@@ -133,7 +135,8 @@ h2 {
         margin: 0 auto;
     }
     .container{
-        width: 100%;
+        width: 100vw;
+        padding: 10px;
         overflow-x: hidden;
         margin: 0 auto;
     }
