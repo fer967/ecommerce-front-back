@@ -10,11 +10,13 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const API_URL = import.meta.env.VITE_API_URL;
+    //const API_URL = 'http://localhost:3000';
 
     const handleRegister = async (e) => {
       e.preventDefault();
       try {
-          const response = await axios.post('http://localhost:3000/api/auth/register', { nombre, apellido, email, password });
+          const response = await axios.post(`${API_URL}/api/auth/register`, { nombre, apellido, email, password });
           console.log('Registrando usuario:', response.data);
           navigate('/login'); // Redirigir al login después de registrarse
       } catch (error) {
