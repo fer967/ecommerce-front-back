@@ -3,6 +3,7 @@ const app = express();
 const PUERTO = process.env.PUERTO || 3000;
 const productosRouter = require("./routes/productos.router.js");
 const ordenesRouter = require("./routes/ordenes.router.js");
+const authRouter = require('./routes/auth.router.js');
 const Product = require("./models/productos.model.js");
 const mongoose = require("mongoose");
 const path = require('path');
@@ -46,6 +47,7 @@ app.use(cors({
 
 app.use("/api/productos", productosRouter);
 app.use("/api/ordenes", ordenesRouter);
+app.use('/api/auth', authRouter);
 
 app.post('/upload', upload.single('image'), (req, res) => {
     const { nombre, descripcion, precio, stock, categoria } = req.body;
@@ -53,7 +55,6 @@ app.post('/upload', upload.single('image'), (req, res) => {
         return res.status(400).json({ error: 'No se ha subido ninguna imagen' });
     }
     const image = req.file.path;  // URL de la imagen en Cloudinary
-    //const result = await cloudinary.uploader.upload(req.file.path);     
     const newProduct = new Product({
         nombre,
         descripcion,
@@ -61,7 +62,6 @@ app.post('/upload', upload.single('image'), (req, res) => {
         stock,
         categoria,
         image: req.file.path
-        //image: result.secure_url
     });
     newProduct.save()
         .then(() => res.status(201).json({ message: 'Producto creado con éxito' }))
