@@ -7,14 +7,12 @@
     padding: 20px;
 }
 
-.vaciar {
-    background-color: #EB302D;
-    color: #FAFAFA;
-    border-radius: 10px;
-    border: none;
-    padding: 10px 20px;
-    text-decoration: none;
-    cursor: pointer;
+@media (max-width: 480px) {
+    .cart{
+        width: 100vw;
+        overflow-x: hidden;
+        margin: 0 auto;
+    }
 }
 
 .carrito-vacio{
@@ -26,6 +24,17 @@
     align-items: center;
     padding: 20px;
 }
+
+.vaciar {
+    background-color: #EB302D;
+    color: #FAFAFA;
+    border-radius: 10px;
+    border: none;
+    padding: 10px 20px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .comprar{
     background-color: green;
     width: 100%;
@@ -37,3 +46,4 @@
     text-decoration: none;
     cursor: pointer;
 }
+

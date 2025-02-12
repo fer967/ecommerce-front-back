@@ -7,6 +7,8 @@ import Cart from "./componentes/Cart/Cart";
 import Checkout from "./componentes/Checkout/Checkout";
 import UploadForm from "./componentes/UploadForm/UploadForm";
 import OrderDetail from './componentes/OrderDetail/OrderDetail';
+import Register from "./componentes/Register/Register";
+import Login from "./componentes/Login/Login";
 
 const App = () => {
   return (
@@ -22,6 +24,8 @@ const App = () => {
             <Route exact path="/checkout" element={<Checkout />} />
             <Route exact path="/upload" element={<UploadForm />} />
             <Route exact path="/order/:id" element={<OrderDetail />} />
+            <Route exact path="/register" element={<Register />} />
+            <Route exact path="/login" element={<Login />}/>
             <Route exact path="*" element={<h2>Sitio en construcción</h2>} />
           </Routes>
         </CarritoProvider>

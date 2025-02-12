@@ -67,6 +67,9 @@
 /* Estilos para pantallas pequeñas */
 @media (max-width: 480px) {
     .contenedorItem {
+        width: 100vw;
+        overflow-x: hidden;
+        margin: 0 auto;
         padding: 10px;
     }
 
