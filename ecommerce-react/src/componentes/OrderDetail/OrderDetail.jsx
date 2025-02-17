@@ -1,5 +1,5 @@
 // modificacion 3 :
-/*
+
 import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../../services/config';
@@ -23,14 +23,10 @@ const OrderDetail = () => {
             try {
                 const orderResponse = await api.get(`/ordenes/${id}`);
                 console.log("API Response:", orderResponse.data);
-
                 // Verifica si orderResponse.data es un array y extrae el objeto
                 const orderData = Array.isArray(orderResponse.data) ? orderResponse.data[0] : orderResponse.data;
-
                 setOrder(orderData);
-                console.log("Order state after setting:", orderData); // <-- Log AFTER setting the state
-
-
+                console.log("Order state after setting:", orderData);     // <-- Log AFTER setting the state
                 const productIds = orderData.items.map(item => item.producto);
                 const productPromises = productIds.map(async productId => {
                     const productResponse = await api.get(`/productos/${productId}`);
@@ -51,18 +47,14 @@ const OrderDetail = () => {
 
     useEffect(() => {
         if (loading) return; // No hacer nada mientras se está cargando
-
         const walletContainer = document.getElementById('wallet_container');
-
         if (order && order.preferenceId && walletContainer && !checkoutInitialized.current && PUBLIC_KEY) {
             console.log("Initializing MercadoPago checkout");
             walletContainer.innerHTML = '';
-
             try {
                 const mp = new window.MercadoPago(PUBLIC_KEY, {
                     locale: 'es-AR'
                 });
-
                 mp.checkout({
                     preference: {
                         id: order.preferenceId
@@ -119,11 +111,11 @@ const OrderDetail = () => {
     );
 }
 
-export default OrderDetail; */
+export default OrderDetail; 
 
 
 // INICIAL ( ok local)
-
+/*
 import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../../services/config';
@@ -229,7 +221,7 @@ const OrderDetail = () => {
     );
 }
 
-export default OrderDetail;
+export default OrderDetail; */
 
 
 //  Modificacion sugerida 17/2/25  ( 1 )

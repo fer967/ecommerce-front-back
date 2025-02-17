@@ -14,7 +14,7 @@ const Checkout = () => {
     const [ordenId, setOrdenId] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate(); 
-    const API_URL = import.meta.env.VITE_API_URL;   // para Deploy 
+    //const API_URL = import.meta.env.VITE_API_URL;   // para Deploy 
 
     const manejadorSubmit = (event) => {
         event.preventDefault();
@@ -41,7 +41,7 @@ const Checkout = () => {
             email
         };
         // Realizamos la solicitud POST al backend
-        api.post(`${API_URL}/ordenes`, orden)     // VER PARA DEPLOY ( /api  ver si va)
+        api.post(`/ordenes`, orden)     // VER PARA DEPLOY ( /api  ver si va)
         //api.post('/ordenes', orden)    // local
             .then(response => {
                 setOrdenId(response.data._id); // Suponiendo que el ID se devuelve en la respuesta del servidor
