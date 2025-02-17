@@ -2,8 +2,12 @@ const express = require("express");
 const router = express.Router();
 const ProductoModel = require("../models/productos.model.js");
 const OrdenModel = require("../models/ordenes.model.js");
-//const nodemailer = require('nodemailer');
+const mercadopago = require("mercadopago");
+require('dotenv').config();
 
+mercadopago.configurations.setAccessToken(process.env.MERCADOPAGO_ACCESS_TOKEN);
+
+// Obtener todas las órdenes
 router.get('/', async (req, res) => {
     try {
         const ordenes = await OrdenModel.find();
@@ -13,17 +17,18 @@ router.get('/', async (req, res) => {
     }
 });
 
+// modificacion :
 router.post('/', async (req, res) => {
     const { items, total, nombre, apellido, telefono, email } = req.body;
     try {
-        // Verificar la disponibilidad de stock antes de crear la orden
+        // 1. Verificar la disponibilidad de stock antes de crear la orden
         for (const item of items) {
             const producto = await ProductoModel.findById(item.producto);
             if (!producto || producto.stock < item.cantidad) {
                 return res.status(400).json({ message: 'Producto no disponible o stock insuficiente' });
             }
         }
-        // Crear la orden
+        // 2. Crear la orden
         const orden = new OrdenModel({
             items,
             total,
@@ -33,21 +38,57 @@ router.post('/', async (req, res) => {
             email
         });
         const nuevaOrden = await orden.save();
-        // Actualizar el stock de los productos
+        // 3. Actualizar el stock de los productos
         for (const item of items) {
             await ProductoModel.findByIdAndUpdate(item.producto, { $inc: { stock: -item.cantidad } });
         }
-        res.status(201).json(nuevaOrden);
+        // 4. Crear la preferencia de pago
+        const preferenceItems = [];
+        for (const item of items) {
+            const producto = await ProductoModel.findById(item.producto); // Obtener la información del producto
+            if (!producto) {
+                return res.status(400).json({ message: 'Producto no encontrado' });
+            }
+            preferenceItems.push({
+                title: producto.nombre, // Usar el nombre del producto
+                unit_price: producto.precio, // Usar el precio del producto
+                quantity: item.cantidad,
+                currency_id: "ARS",
+                description: producto.descripcion, // Puedes agregar una descripción
+                // picture_url: producto.image, // Si tienes una URL de imagen
+            });
+        }
+        const preference = {
+            items: preferenceItems,  // Usar los items construidos correctamente
+            back_urls: {  // Ajusta estas URLs a tu frontend
+                success: "http://localhost:5173/success", 
+                failure: "http://localhost:5173/failure", 
+                pending: "http://localhost:5173/pending"  
+            },
+            auto_return: 'approved' // Asegura que Mercado Pago redirija automáticamente
+        };
+        //console.log("preferenceItems:", preferenceItems); // Loguea los items
+        //console.log("preference:", preference); // Loguea la preferencia
+        const response = await mercadopago.preferences.create(preference);
+        //console.log("MercadoPago response:", response); // Loguea la respuesta de MP
+        nuevaOrden.preferenceId = response.body.id; // Guardar el ID de la preferencia
+        console.log("nuevaOrden.preferenceId:", nuevaOrden.preferenceId); // Loguea el preferenceId
+        await nuevaOrden.save();
+        console.log("Orden guardada con preferenceId:", nuevaOrden.preferenceId); // Loguea después de guardar
+        res.status(201).json(nuevaOrden); // Devolver la orden con el preferenceId
     } catch (error) {
+        console.error("Error al crear la orden y la preferencia:", error); // Loguear el error
+        console.error("Error stack:", error.stack); // Agrega esto
         res.status(500).json({ message: error.message });
     }
 });
 
+// Obtener una orden por ID
 router.get('/:id', async (req, res) => {
     try {
         const orden = await OrdenModel.findById(req.params.id);
         if (orden) {
-            res.json(orden);
+            res.json(orden); // Devuelve la orden completa
         } else {
             res.status(404).json({ message: "Orden no encontrada" });
         }
@@ -59,66 +100,7 @@ router.get('/:id', async (req, res) => {
 module.exports = router;
 
 
-// NODEMAILER :
-/*EMAIL_USER=gabrielfcorrea@gmail.com
-EMAIL_PASS=Iwne howx szmf qsjd */
-/*
-Opción 1: Usar una contraseña de aplicación
-Ve a tu cuenta de Google y accede a la sección de Seguridad.
-En la sección "Iniciar sesión en Google", selecciona "Contraseñas de aplicaciones".
-Genera una nueva contraseña de aplicación y úsala en lugar de tu contraseña normal en la variable de entorno EMAIL_PASS.
-
-Opción 2: Habilitar el acceso a aplicaciones menos seguras
-Ve a tu cuenta de Google y accede a la sección de Seguridad.
-En la sección "Acceso de aplicaciones poco seguras", habilita el acceso a aplicaciones menos seguras.
 
 
-// Configura el transportador de nodemailer
-const transporter = nodemailer.createTransport({
-    service: 'gmail', // Puedes usar otros servicios como Outlook, Yahoo, etc.
-    auth: {
-        user: process.env.EMAIL_USER, // Tu dirección de correo electrónico
-        pass: process.env.EMAIL_PASS  // Tu contraseña de correo electrónico
-    }
-});
 
-// Verifica la configuración del transportador
-transporter.verify((error, success) => {
-    if (error) {
-        console.error('Error al configurar nodemailer:', error);
-    } else {
-        console.log('Nodemailer configurado correctamente');
-    }
-});
-
-router.post('/api/ordenes', async (req, res) => {
-    try {
-        const nuevaOrden = new OrdenModel(req.body);
-        await nuevaOrden.save();
-
-        // Configura el contenido del correo electrónico
-        const mailOptions = {
-            from: process.env.EMAIL_USER,
-            to: req.body.email, // Dirección de correo electrónico del cliente
-            subject: 'Confirmación de Orden',
-            text: `Hola ${req.body.nombre},\n\nGracias por tu compra. Aquí están los detalles de tu orden:\n\nOrden ID: ${nuevaOrden._id}\nNombre: ${req.body.nombre}\nApellido: ${req.body.apellido}\nTeléfono: ${req.body.telefono}\nEmail: ${req.body.email}\nTotal: $${req.body.total}\n\nProductos:\n${req.body.items.map(item => `Producto ID: ${item.producto}, Cantidad: ${item.cantidad}`).join('\n')}\n\nGracias por comprar con nosotros.\n\nSaludos,\nTu Tienda`
-        };
-
-        // Envía el correo electrónico
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.error('Error al enviar el correo electrónico:', error);
-            } else {
-                console.log('Correo electrónico enviado:', info.response);
-            }
-        });
-
-        res.status(201).json(nuevaOrden);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
-    }
-});
-
-
-*/
 

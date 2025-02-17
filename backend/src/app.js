@@ -68,9 +68,10 @@ app.post('/upload', upload.single('image'), (req, res) => {
         .catch(err => res.status(400).json({ error: err.message }));
 });
 
-
 app.listen(PUERTO, () => {
     console.log(`server in http://localhost:${PUERTO}`)});
+
+
 
 
 
