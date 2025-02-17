@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Link } from "react-router-dom";
 import './Register.css';
 
 const Register = () => {
@@ -10,8 +11,8 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
-    const API_URL = import.meta.env.VITE_API_URL;
-    //const API_URL = 'http://localhost:3000';
+    //const API_URL = import.meta.env.VITE_API_URL;
+    const API_URL = 'http://localhost:3000';
 
     const handleRegister = async (e) => {
       e.preventDefault();
@@ -27,6 +28,8 @@ const Register = () => {
 
     return (
         <div className="register">
+            <h3>ya esta registrado ?</h3>
+            <Link to="/login"> loguearse </Link>
             <h2>Registro de Usuarios</h2>
             <form onSubmit={handleRegister}>
             <div className="form-group">

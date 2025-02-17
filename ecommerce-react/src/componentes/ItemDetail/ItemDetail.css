@@ -1,6 +1,12 @@
-/* Estilos generales para el contenedor del detalle del item */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .contenedorItem {
     width: 100%;
+    height: 100%;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
@@ -67,8 +73,8 @@
 /* Estilos para pantallas pequeñas */
 @media (max-width: 480px) {
     .contenedorItem {
-        width: 100vw;
-        height: 100vh;
+        width: 100%;
+        height: 100%;
         overflow-x: hidden;
         margin: 0 auto;
         padding: 10px;

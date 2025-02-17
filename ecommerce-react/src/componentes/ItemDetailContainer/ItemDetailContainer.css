@@ -1,8 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .itemDetailContainer{
     background-color: rgba(128, 128, 128, 0.986);
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 100%;
     margin: 0 auto;
     padding: 16px;
 }
+

@@ -1,5 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .cart{
     width: 100vw;
+    height: 100%;
     background-color: rgba(137, 43, 226, 0.468);
     display: flex;
     flex-direction: column;
@@ -16,8 +23,8 @@
 }
 
 .carrito-vacio{
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background-color: rgba(137, 43, 226, 0.468);
     display: flex;
     flex-direction: column;

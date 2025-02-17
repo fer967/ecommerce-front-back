@@ -26,12 +26,28 @@ const App = () => {
             <Route exact path="/order/:id" element={<OrderDetail />} />
             <Route exact path="/register" element={<Register />} />
             <Route exact path="/login" element={<Login />}/>
+            <Route exact path="/success" element={<SuccessPage />} />
+            <Route exact path="/failure" element={<FailurePage />} />
+            <Route exact path="/pending" element={<PendingPage />} />
             <Route exact path="*" element={<h2>Sitio en construcción</h2>} />
           </Routes>
         </CarritoProvider>
       </BrowserRouter>
     </div>
   )
+}
+
+// **** Pendiente reemplazar funciones por componentes  ****
+function SuccessPage() {
+  return <h1>Pago Exitoso</h1>;
+}
+
+function FailurePage() {
+  return <h1>Pago Fallido</h1>;
+}
+
+function PendingPage() {
+  return <h1>Pago Pendiente</h1>;
 }
 
 export default App

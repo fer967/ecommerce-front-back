@@ -1,4 +1,8 @@
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 /* Estilos generales para la tarjeta del producto */
 .cardProducto {
     background-color: white;
