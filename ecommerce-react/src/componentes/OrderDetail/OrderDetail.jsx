@@ -1,4 +1,5 @@
 // modificacion 3 :
+/*
 import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../../services/config';
@@ -13,7 +14,7 @@ const OrderDetail = () => {
     const checkoutInitialized = useRef(false);
     const PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY;
 
-    console.log("OrderDetail: id from useParams:", id);
+    console.log("OrderDetail: id from useParams:", id);   // ok
 
     useEffect(() => {
         const fetchOrderData = async () => {
@@ -118,11 +119,11 @@ const OrderDetail = () => {
     );
 }
 
-export default OrderDetail;
+export default OrderDetail; */
 
 
 // INICIAL ( ok local)
-/*
+
 import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../../services/config';
@@ -228,7 +229,7 @@ const OrderDetail = () => {
     );
 }
 
-export default OrderDetail;*/
+export default OrderDetail;
 
 
 //  Modificacion sugerida 17/2/25  ( 1 )
