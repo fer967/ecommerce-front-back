@@ -67,12 +67,16 @@ router.post('/', async (req, res) => {
             },
             auto_return: 'approved' // Asegura que Mercado Pago redirija automáticamente
         };
-        //console.log("preferenceItems:", preferenceItems); // Loguea los items
-        //console.log("preference:", preference); // Loguea la preferencia
+
+        console.log("preferenceItems:", preferenceItems); // Loguea los items
+        console.log("preference:", preference); // Loguea la preferencia
+
         const response = await mercadopago.preferences.create(preference);
-        //console.log("MercadoPago response:", response); // Loguea la respuesta de MP
+        console.log("MercadoPago response:", response); // Loguea la respuesta de MP
+
         nuevaOrden.preferenceId = response.body.id; // Guardar el ID de la preferencia
         console.log("nuevaOrden.preferenceId:", nuevaOrden.preferenceId); // Loguea el preferenceId
+        
         await nuevaOrden.save();
         console.log("Orden guardada con preferenceId:", nuevaOrden.preferenceId); // Loguea después de guardar
         res.status(201).json(nuevaOrden); // Devolver la orden con el preferenceId
