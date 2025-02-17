@@ -41,7 +41,7 @@ const Checkout = () => {
             email
         };
         // Realizamos la solicitud POST al backend
-        api.post(`${API_URL}/api/ordenes`, orden)     // VER PARA DEPLOY ( /api  ver si va)
+        api.post(`${API_URL}/ordenes`, orden)     // VER PARA DEPLOY ( /api  ver si va)
         //api.post('/ordenes', orden)    // local
             .then(response => {
                 setOrdenId(response.data._id); // Suponiendo que el ID se devuelve en la respuesta del servidor

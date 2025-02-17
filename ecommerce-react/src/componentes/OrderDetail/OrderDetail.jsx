@@ -1,3 +1,127 @@
+// modificacion 3 :
+import React, { useEffect, useState, useRef } from 'react';
+import { useParams } from 'react-router-dom';
+import api from '../../services/config';
+import './OrderDetail.css';
+
+const OrderDetail = () => {
+    const { id } = useParams();
+    const [order, setOrder] = useState(null);
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const checkoutInitialized = useRef(false);
+    const PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY;
+
+    console.log("OrderDetail: id from useParams:", id);
+
+    useEffect(() => {
+        const fetchOrderData = async () => {
+            setLoading(true);
+            setError(null);
+            try {
+                const orderResponse = await api.get(`/ordenes/${id}`);
+                console.log("API Response:", orderResponse.data);
+
+                // Verifica si orderResponse.data es un array y extrae el objeto
+                const orderData = Array.isArray(orderResponse.data) ? orderResponse.data[0] : orderResponse.data;
+
+                setOrder(orderData);
+                console.log("Order state after setting:", orderData); // <-- Log AFTER setting the state
+
+
+                const productIds = orderData.items.map(item => item.producto);
+                const productPromises = productIds.map(async productId => {
+                    const productResponse = await api.get(`/productos/${productId}`);
+                    console.log("Product API Response:", productResponse.data);
+                    return productResponse.data;
+                });
+                const productResponses = await Promise.all(productPromises);
+                setProducts(productResponses);
+            } catch (err) {
+                console.error('Error al obtener los detalles de la orden:', err);
+                setError('Error al cargar los detalles de la orden.');
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchOrderData();
+    }, [id]);
+
+    useEffect(() => {
+        if (loading) return; // No hacer nada mientras se está cargando
+
+        const walletContainer = document.getElementById('wallet_container');
+
+        if (order && order.preferenceId && walletContainer && !checkoutInitialized.current && PUBLIC_KEY) {
+            console.log("Initializing MercadoPago checkout");
+            walletContainer.innerHTML = '';
+
+            try {
+                const mp = new window.MercadoPago(PUBLIC_KEY, {
+                    locale: 'es-AR'
+                });
+
+                mp.checkout({
+                    preference: {
+                        id: order.preferenceId
+                    },
+                    render: {
+                        container: '#wallet_container',
+                        label: 'Pagar',
+                        autoOpen: true
+                    }
+                });
+                checkoutInitialized.current = true;
+            } catch (error) {
+                console.error("Error initializing MercadoPago:", error);
+            }
+        } else {
+            console.log("OrderDetail: Condiciones no cumplidas para inicializar MP");
+            console.log("OrderDetail: order =", order);
+            console.log("OrderDetail: walletContainer =", walletContainer);
+            console.log("OrderDetail: PUBLIC_KEY =", PUBLIC_KEY);
+        }
+    }, [order, loading, PUBLIC_KEY]);  // Depende de 'order', 'loading' y 'PUBLIC_KEY'
+
+
+    if (loading) {
+        return <p>Cargando...</p>;
+    }
+
+    if (error) {
+        return <p>Error: {error}</p>;
+    }
+
+    return (
+        <div className='order-detail'>
+            <h2>Detalles de la Orden</h2>
+            <p>Orden ID: {order?._id}</p>
+            <p>Nombre: {order?.nombre}</p>
+            <p>Apellido: {order?.apellido}</p>
+            <p>Teléfono: {order?.telefono}</p>
+            <p>Email: {order?.email}</p>
+            <h3>Productos</h3>
+            <ul>
+                {products.map((product, index) => {
+                    console.log(`Rendering item ${index}:`, product);
+                    return (
+                        <li key={product?._id}>
+                            Producto: {product?.nombre || 'Nombre no encontrado'}, Cantidad: {order?.items[index]?.cantidad}
+                        </li>
+                    );
+                })}
+            </ul>
+            <p>Total: ${order?.total}</p>
+            <div id="wallet_container"></div>
+        </div>
+    );
+}
+
+export default OrderDetail;
+
+
+// INICIAL ( ok local)
 /*
 import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
@@ -237,6 +361,7 @@ Verifica la respuesta de la API: Asegúrate de que la respuesta de tu API conten
 
 
 // modificacion ( 2 )
+/*
 import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../../services/config';
@@ -355,7 +480,7 @@ const OrderDetail = () => {
     );
 }
 
-export default OrderDetail;
+export default OrderDetail;  */
 
 
 
