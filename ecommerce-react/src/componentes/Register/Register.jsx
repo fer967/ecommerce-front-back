@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Link } from "react-router-dom";
 import './Register.css';
 
 const Register = () => {
@@ -11,7 +10,7 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
-    const API_URL = import.meta.env.VITE_API_URL;
+    const API_URL = import.meta.env.VITE_API_URL;      // DEPLOY
     //const API_URL = 'http://localhost:3000';
 
     const handleRegister = async (e) => {
@@ -25,31 +24,35 @@ const Register = () => {
             setError('Error al registrar usuario');
         }
     };
+    const handleLoginRedirect = () => {
+        navigate('/login');
+    };
 
     return (
         <div className="register">
-            <h3>ya esta registrado ?</h3>
-            <Link to="/login"> loguearse </Link>
-            <h2>Registro de Usuarios</h2>
+            <h3>si ya estas registrado</h3>
+            <button onClick={handleLoginRedirect} className="login-button">Iniciar Sesión</button>
+            <br />
+            <h3> registrate </h3>
             <form onSubmit={handleRegister}>
                 <div className="form-group">
-                    <label>Nombre:</label>
-                    <input className="input" type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} required />
+                    <label></label>
+                    <input className="input" type="text" placeholder='nombre' value={nombre} onChange={(e) => setNombre(e.target.value)} required />
                 </div>
                 <div className="form-group">
-                    <label>Apellido:</label>
-                    <input className="input" type="text" value={apellido} onChange={(e) => setApellido(e.target.value)} required />
+                    <label></label>
+                    <input className="input" type="text" placeholder='apellido' value={apellido} onChange={(e) => setApellido(e.target.value)} required />
                 </div>
                 <div className="form-group">
-                    <label>Email:</label>
-                    <input className="input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                    <label></label>
+                    <input className="input" type="email" placeholder='email' value={email} onChange={(e) => setEmail(e.target.value)} required />
                 </div>
                 <div className="form-group">
-                    <label>Password:</label>
-                    <input className="input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                    <label></label>
+                    <input className="input" type="password" placeholder='contraseña' value={password} onChange={(e) => setPassword(e.target.value)} required />
                 </div>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
-                <button type="submit" className='registrarse'>Registrarse</button>
+                <button type="submit" className="registrarse">registrarse</button>
             </form>
         </div>
     );

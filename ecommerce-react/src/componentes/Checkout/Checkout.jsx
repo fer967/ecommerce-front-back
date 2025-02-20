@@ -14,7 +14,6 @@ const Checkout = () => {
     const [ordenId, setOrdenId] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate(); 
-    //const API_URL = import.meta.env.VITE_API_URL;   // para Deploy 
 
     const manejadorSubmit = (event) => {
         event.preventDefault();
@@ -41,8 +40,7 @@ const Checkout = () => {
             email
         };
         // Realizamos la solicitud POST al backend
-        api.post(`/ordenes`, orden)     // VER PARA DEPLOY ( /api  ver si va)
-        //api.post('/ordenes', orden)    // local
+        api.post('/ordenes', orden)    // local
             .then(response => {
                 setOrdenId(response.data._id); // Suponiendo que el ID se devuelve en la respuesta del servidor
                 vaciarCarrito();
@@ -56,37 +54,38 @@ const Checkout = () => {
     }
     return (
         <div className="checkout">
-            <h3> Checkout </h3>
+            <h2> Checkout </h2>
             <form onSubmit={manejadorSubmit} className="formulario">
                 {
                     carrito.map(producto => (
                         <div key={producto.item._id}>
-                            <p> {producto.item.nombre} x {producto.cantidad} </p>
+                            <h4>{producto.item.nombre}</h4>
+                            <p> cantidad : {producto.cantidad} </p>
                             <p> Precio: $ {producto.item.precio} </p>
-                            <hr />
                         </div>
                     ))
                 }
-                <hr />
+                <br />
                 <div className="form-group">
-                    <label htmlFor=""> Nombre </label>
-                    <input className ="input" type="text" placeholder="ingrese su nombre" onChange={(e) => setNombre(e.target.value)} />
+                  <h4>ingresa tus datos</h4>
+                    <label htmlFor=""> </label>
+                    <input className ="input" type="text" placeholder="nombre" onChange={(e) => setNombre(e.target.value)} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor=""> Apellido </label>
-                    <input className ="input" type="text" onChange={(e) => setApellido(e.target.value)} />
+                    <label htmlFor=""> </label>
+                    <input className ="input" type="text" placeholder="apellido" onChange={(e) => setApellido(e.target.value)} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor=""> Telefono </label>
-                    <input className ="input" type="text" onChange={(e) => setTelefono(e.target.value)} />
+                    <label htmlFor="">  </label>
+                    <input className ="input" type="text" placeholder="telefono" onChange={(e) => setTelefono(e.target.value)} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor=""> Email </label>
-                    <input className ="input" type="email" onChange={(e) => setEmail(e.target.value)} />
+                    <label htmlFor=""> </label>
+                    <input className ="input" type="email" placeholder="email" onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor=""> Confirmar correo </label>
-                    <input className ="input" type="email" onChange={(e) => setEmailConfirmacion(e.target.value)} />
+                    <label htmlFor="">  </label>
+                    <input className ="input" type="email" placeholder="confirme correo" onChange={(e) => setEmailConfirmacion(e.target.value)} />
                 </div>
                 {
                     error && <p style={{ color: "red" }}> {error} </p>

@@ -1,3 +1,7 @@
 .carrito {
     width: 100px;
 }
+
+.icono{
+    cursor: pointer;
+}
