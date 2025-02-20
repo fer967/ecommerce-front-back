@@ -58,7 +58,7 @@ router.post('/', async (req, res) => {
                 // picture_url: producto.image, // Si tienes una URL de imagen
             });
         }
-        const preference = {
+        const preference = { 
             items: preferenceItems,  // Usar los items construidos correctamente
             back_urls: {  // Ajusta estas URLs a tu frontend
                 /*success: "http://localhost:5173/success", 
