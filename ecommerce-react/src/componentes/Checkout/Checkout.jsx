@@ -62,6 +62,7 @@ const Checkout = () => {
                             <h4>{producto.item.nombre}</h4>
                             <p> cantidad : {producto.cantidad} </p>
                             <p> Precio: $ {producto.item.precio} </p>
+                            <br />
                         </div>
                     ))
                 }

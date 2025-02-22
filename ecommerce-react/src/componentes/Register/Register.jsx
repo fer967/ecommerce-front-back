@@ -30,6 +30,7 @@ const Register = () => {
 
     return (
         <div className="register">
+            <h2>Hola, Bienvenido !!</h2>
             <h3>si ya estas registrado</h3>
             <button onClick={handleLoginRedirect} className="login-button">Iniciar Sesión</button>
             <br />
