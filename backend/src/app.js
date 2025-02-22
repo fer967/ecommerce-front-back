@@ -71,6 +71,19 @@ app.post('/upload', upload.single('image'), (req, res) => {
 app.listen(PUERTO, () => {
     console.log(`server in http://localhost:${PUERTO}`)});
 
+// ver ejemplo de Studio :
+/*
+const express = require('express');
+const authRoutes = require('./routes/auth'); // Ajusta la ruta si es necesario
+
+const app = express();
+app.use(express.json()); // Para analizar el cuerpo de las solicitudes JSON
+
+app.use('/api/auth', authRoutes); // Todas las rutas de autenticación estarán bajo /api/auth
+
+// ... el resto de tu aplicación ...
+*/
+
 
 
 

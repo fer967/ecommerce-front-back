@@ -5,7 +5,7 @@ const OrdenModel = require("../models/ordenes.model.js");
 const mercadopago = require("mercadopago");
 require('dotenv').config();
 
-mercadopago.configurations.setAccessToken(process.env.MERCADOPAGO_ACCESS_TOKEN);
+//mercadopago.configurations.setAccessToken(process.env.MERCADOPAGO_ACCESS_TOKEN);
 
 // Obtener todas las órdenes
 router.get('/', async (req, res) => {
@@ -63,10 +63,10 @@ router.post('/', async (req, res) => {
             back_urls: {  // Ajusta estas URLs a tu frontend
                 /*success: "http://localhost:5173/success", 
                 failure: "http://localhost:5173/failure", 
-                pending: "http://localhost:5173/pending"  */
+                pending: "http://localhost:5173/pending" */ 
                 success: "https://front-wp3g.onrender.com",
                 failure: "https://front-wp3g.onrender.com",
-                pending: "https://front-wp3g.onrender.com",
+                pending: "https://front-wp3g.onrender.com", 
             },
             auto_return: 'approved' // Asegura que Mercado Pago redirija automáticamente
         };
