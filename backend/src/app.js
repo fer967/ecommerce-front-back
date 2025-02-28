@@ -45,17 +45,17 @@ app.use(cors({
     credentials: true
 }));
 
-app.use("/api/productos", productosRouter);
+app.use("/api/productos", productosRouter);                    
 app.use("/api/ordenes", ordenesRouter);
 app.use('/api/auth', authRouter);
 
-app.post('/upload', upload.single('image'), (req, res) => {
-    const { nombre, descripcion, precio, stock, categoria } = req.body;
+app.post('/upload', upload.single('image'), (req, res) => {                        // ver ruta uploadForm
+    const { nombre, descripcion, precio, stock, categoria } = req.body;            // agregar marca
     if (!req.file) {
         return res.status(400).json({ error: 'No se ha subido ninguna imagen' });
     }
     const image = req.file.path;  // URL de la imagen en Cloudinary
-    const newProduct = new Product({
+    const newProduct = new Product({                                                // agregar marca
         nombre,
         descripcion,
         precio,
