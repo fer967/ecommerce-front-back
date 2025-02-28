@@ -1,11 +1,37 @@
 .upload-form{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(137, 43, 226, 0.468);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
+    padding: 15px;
 }
 
 .input{
     border: solid 1px #000;
+    width: 40%;
+}
+
+.upload {
+    background-color: green;
+    width: 30%;
+    text-align: center;
+    color: #FAFAFA;
+    border-radius: 10px;
+    border: none;
+    padding: 10px 20px;
+    text-decoration: none;
+    cursor: pointer
+}
+
+@media (max-width: 480px) {
+    .input {
+        border: solid 1px #000;
+        width: 80%;
+    }
+    .upload {
+        width: 70%;
+    }
 }

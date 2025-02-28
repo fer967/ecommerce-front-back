@@ -9,6 +9,7 @@ import UploadForm from "./componentes/UploadForm/UploadForm";
 import OrderDetail from './componentes/OrderDetail/OrderDetail';
 import Register from "./componentes/Register/Register";
 import Login from "./componentes/Login/Login";
+import Home from "./componentes/Home/Home";
 
 const App = () => {
   return (
@@ -17,7 +18,8 @@ const App = () => {
         <CarritoProvider>
           <NavBar />
           <Routes>
-            <Route exact path="/" element={<ItemListContainer />} />
+            <Route exact path="/" element={<Home/>} />
+            <Route exact path="/productos" element={<ItemListContainer />} />
             <Route exact path="/categoria/:idCategoria" element={<ItemListContainer />} />
             <Route exact path="/item/:idItem" element={<ItemDetailContainer />} />
             <Route exact path="/cart" element={<Cart />} />

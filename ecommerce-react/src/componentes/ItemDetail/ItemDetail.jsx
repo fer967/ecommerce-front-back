@@ -16,8 +16,8 @@ const ItemDetail = ({ _id, nombre, stock, precio, image }) => {
         <div className='contenedorItem'>
             <h2>{nombre} </h2>
             <img src={image} alt={nombre} /> {/* Usa directamente la URL de Cloudinary */}
-            <p>Precio:{precio} </p>
-            <p>STOCK:{stock} </p>
+            <p>Precio : {precio} </p>
+            <p>STOCK : {stock} </p>
             {
                 agregarCantidad > 0 ? (<Link to="/cart" className='comprar'>Terminar Compra</Link>) : (<Contador inicial={1} stock={stock} funcionAgregar={manejadorCantidad} />)
             }
