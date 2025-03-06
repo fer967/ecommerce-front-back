@@ -63,7 +63,7 @@ router.post('/', async (req, res) => {
             back_urls: {  // Ajusta estas URLs a tu frontend
                 /*success: "http://localhost:5173/success", 
                 failure: "http://localhost:5173/failure", 
-                pending: "http://localhost:5173/pending" */ 
+                pending: "http://localhost:5173/pending" */
                 success: "https://front-wp3g.onrender.com",
                 failure: "https://front-wp3g.onrender.com",
                 pending: "https://front-wp3g.onrender.com", 
