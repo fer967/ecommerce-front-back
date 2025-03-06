@@ -25,6 +25,21 @@
     width: 100%;
 }
 
+.home a {
+    color: #333; 
+    text-decoration: none; 
+    margin-right: 10px; 
+}
+
+.home a:hover {
+    color: #007bff; 
+}
+
+.home svg {
+    margin-right: 5px; 
+    font-size: 1.2em; 
+}
+
 .button {
     width: 30%;
     background-color: green;
@@ -44,11 +59,12 @@
 
 @media (max-width: 480px) {
     .home-container {
+        height: 100vh;  
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 10px;
+        gap: 5px;
     }
     .home {
         width: 100%;
@@ -61,6 +77,17 @@
     .button {
         width: 60%;
     }
+    .upload {
+        width: 60%;
+    }
 }
     
-    
+/*
+.home {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+*/
